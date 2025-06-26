@@ -1,6 +1,6 @@
 # University Mapper
 
-A full-stack web application to map and explore university data, featuring real-world data scraping, API integration, concurrency, and advanced algorithms like cosine similarity.
+A full-stack web application to map and explore university data, featuring real-world data scraping, API integration, concurrency, and advanced algorithms like cosine similarity for searching.
 
 ---
 
