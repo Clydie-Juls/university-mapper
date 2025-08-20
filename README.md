@@ -34,8 +34,12 @@ Run these commands in sequence to get the app up and running:
 # 1. Start PostgreSQL with Docker
 docker run --name university-mapper-db -e POSTGRES_PASSWORD=12345678 -p 5432:5432 -d postgres
 
+# 1.1 Create a database called 'universitydb'
+docker exec -it university-mapper-db \
+  psql -U postgres -d postgres -c "CREATE DATABASE universitydb;"
+
 # 2. Seed the database by running the scraper
-cd scraper
+cd backend/scraper
 go run .
 
 # 3. Run the backend API server (in a new terminal)
