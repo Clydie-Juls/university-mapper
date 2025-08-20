@@ -68,7 +68,7 @@ export function Sidebar({ countries, fields, universities, handleMapView }: Side
             </SelectTrigger>
             <SelectContent position="popper">
               {countries?.map(country => (
-                <SelectItem key={country} value={country}>{country}</SelectItem>
+                <SelectItem key={country} value={country || "unkown"}>{country}</SelectItem>
               ))}
             </SelectContent>
           </Select>

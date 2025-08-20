@@ -31,7 +31,7 @@ export default function UniversityMap({ universities, countries, fields }: Unive
         <OpenLayersMap universities={universities} mapRefShare={mapRef} />
       </div>
       <div className="w-full h-screen">
-        <Sidebar countries={countries} fields={fields} universities={universities} handleMapView={handleFlyTo}/>
+        <Sidebar countries={countries} fields={fields} universities={universities} handleMapView={handleFlyTo} />
       </div>
     </>
   )
