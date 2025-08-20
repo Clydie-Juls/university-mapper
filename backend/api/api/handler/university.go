@@ -30,8 +30,7 @@ type University struct {
 	Longitude                string
 }
 
-type UniversityHandler struct {
-}
+type UniversityHandler struct{}
 
 func NewUniversityHandler() *UniversityHandler {
 	return &UniversityHandler{}
@@ -48,6 +47,7 @@ func (_ *UniversityHandler) GetRoutes() http.Handler {
 
 func getCountries(w http.ResponseWriter, r *http.Request) {
 	db, err := db.NewPostgresDB()
+	log.Println("1")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -71,6 +71,7 @@ func getCountries(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUniversityFields(w http.ResponseWriter, r *http.Request) {
+	log.Println("3")
 	uniType := reflect.TypeOf(University{})
 	w.Header().Set("Content-Type", "application/json")
 
@@ -96,11 +97,11 @@ func getUniversities(w http.ResponseWriter, r *http.Request) {
 		sortedFields = "ORDER BY " + sortedFields
 	}
 
-  country = utils.ConvertToSQLWhereCondition(country)
-  name = utils.ConvertToSQLWhereCondition(name)
+	country = utils.ConvertToSQLWhereCondition(country)
+	name = utils.ConvertToSQLWhereCondition(name)
 
-  whereClause := fmt.Sprintf("WHERE country %s AND name %s", country, name)
-  fmt.Println(whereClause)
+	whereClause := fmt.Sprintf("WHERE country %s AND name %s", country, name)
+	fmt.Println(whereClause)
 
 	if sortedFields != "" {
 		sortedFields = strings.ReplaceAll(sortedFields, ":asc", " ASC")
@@ -108,7 +109,7 @@ func getUniversities(w http.ResponseWriter, r *http.Request) {
 	}
 
 	query := fmt.Sprintf("SELECT * FROM universities %s %s %s", whereClause, sortedFields, limit)
-  fmt.Println(query)
+	fmt.Println(query)
 	db, err := db.NewPostgresDB()
 	if err != nil {
 		w.WriteHeader(500)
